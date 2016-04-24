@@ -11,6 +11,7 @@ to-do:
 - filter kanji for those without a level/grade?
 - sort collection by given parameter(s)?
 - fetch additional kanji info (onyomi, kunyomi) from external api?
+
 ---
 ## `Kanji` Object
 
@@ -64,9 +65,9 @@ KanjiCollection("おはよう！");
 
 The returned object has the following attributes:
 
-| attribute  | returns | description                                                                |
+| attribute  | value | description                                                                |
 |------------|--------|----------------------------------------------------------------------------|
-| `collection` | array  | an array of kanji objects ordered by appearance in text, kanji can repeat  |
+| `collection` | Array  | an array of kanji objects ordered by appearance in text, kanji can repeat  |
 
 The object has the following methods:
 

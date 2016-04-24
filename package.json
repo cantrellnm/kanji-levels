@@ -1,13 +1,13 @@
 {
   "name": "kanji-levels",
   "version": "1.0.0",
-  "description": "Parse text for Japanese kanji and get information about the individual kanji levels/category and collection.",
+  "description": "Parse text for Japanese kanji and get information about individual kanji levels/category and the collection.",
   "main": "kanji-levels.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test.js"
   },
   "keywords": [
     "japanese",
@@ -16,7 +16,7 @@
     "language"
   ],
   "author": "cantrellnm",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "tape": "^4.5.1"
   }
