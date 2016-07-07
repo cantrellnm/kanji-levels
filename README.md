@@ -1,16 +1,11 @@
 # kanji-levels.js
+### See code in use and check kanji levels of text with [Kanji Level Check](https://cantrellnm.github.io/kanji-levels/).
+
 - parse text for Japanese kanji
 - see the jōyō grade, JLPT level, and WaniKani level of each kanji
 - determine readability of Japanese text based on grade/level of kanji
 - count number of times a kanji is used, find most frequently used kanji
 - filter kanji by category (jōyō, jinmeiyō, hyōgai) or level
-
-to-do:
-- add examples to readme
-- fix/test error throwing
-- filter kanji for those without a level/grade?
-- sort collection by given parameter(s)?
-- fetch additional kanji info (onyomi, kunyomi) from external api?
 
 ---
 ## `Kanji` Object
