@@ -1,0 +1,55 @@
+body {
+  background-color: #eee;
+}
+.summary {
+  text-align: right;
+}
+.levels-list {
+  display: table;
+}
+.levels-list li {
+  display: inline-block;
+  min-width: 100px;
+  margin: 1rem;
+  padding: 1rem;
+  list-style-type: none;
+  text-align: center;
+}
+.level {
+  display: block;
+  white-space: nowrap;
+  font-size: 1.4em;
+  border-bottom: solid black 2px;
+}
+.bold {
+  font-weight: bold;
+}
+.level-kanji, .frequent-kanji {
+  display: inline-block;
+  font-size: 1.2em;
+  margin: .2em;
+  padding: .2em;
+  background-color: white;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+}
+[lang="ja"] {
+    font-family: "Meiryo","Hiragino Kaku Gothic Pro","Yu Gothic","ヒラギノ角ゴ Pro W3","メイリオ","Osaka","MS PGothic","ＭＳ Ｐゴシック",sans-serif;
+}
+a, a:visited {
+  color: rgba(116, 162, 42, 1);
+}
+a:hover, a:active {
+  color: rgba(116, 162, 42, .8);
+}
+details {
+  margin: 1em 0;
+}
+summary {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+mark {
+  background-color: white;
+  display: inline-block;
+  margin: .2em;
+}

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" ng-app="LevelApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Kanji Level Check</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+    <script src="js/kanji-levels.js"></script>
+    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body ng-controller="AppController">
+    <div class="container">
+      <h1 class="bold">Kanji Level Check</h1>
+      <h3>Check <a href="https://www.wanikani.com">WaniKani</a> level, <a href="https://en.wikipedia.org/wiki/J%C5%8Dy%C5%8D_kanji">Jōyō</a> grade, and <a href="http://www.jlpt.jp/e/index.cgi">JLPT</a> level of Japanese kanji in text.</h3>
+      <p>Example of <mark><a href="https://github.com/cantrellnm/kanji-levels">cantrellnm/kanji-levels</a></mark> in use. <a href="https://github.com/cantrellnm/kanji-levels">View on GitHub.</a></p>
+      <textarea class="form-control" rows="10" placeholder="Paste text here" ng-change="parseText()" ng-model="inputText"></textarea>
+      <h3 ng-if="inputText && !collection">No kanji found in text.</h3>
+      <div ng-if="collection">
+        <div class="summary">
+          <h3>
+            <strong>Number of Kanji:</strong>
+            {{ collection.countTotal() }} total,
+            {{ collection.countUnique() }} unique
+          </h3>
+          <h3>
+            <strong>Most Frequent:</strong>
+            <span lang="ja" class="frequent-kanji" ng-bind="mostFrequent[1].kanji.join(', ')"></span> used {{ mostFrequent[1].count }} times
+          </h3>
+        </div>
+
+        <details>
+          <summary>WaniKani:
+            <mark ng-style="{'background-color': 'rgba(160,210,80,'+percent('wk', collection.highestWk())+')' }">
+              {{ collection.percentReadable({wk:collection.highestWk()}) }}
+            </mark>
+            readability at level {{collection.highestWk()}}</summary>
+          <ul class="levels-list">
+            <li ng-repeat="level in wkLevels" ng-if="collection.filterEqual({wk: level}).countTotal() > 0">
+              <span class="level">Level {{level}}:
+                <mark ng-style="{'background-color': 'rgba(160,210,80,'+percent('wk', level)+')' }">
+                  {{ collection.percentReadable({wk: level}) }}
+                </mark>
+              </span>
+              <span class="level-kanji" lang="ja" ng-bind="collection.filterEqual({wk: level}).collection.join(', ')"></span>
+            </li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Jōyō:
+            <mark ng-style="{'background-color': 'rgba(160,210,80,'+percent('joyo', collection.highestJoyo())+')' }">
+              {{ collection.percentReadable({joyo:collection.highestJoyo()}) }}
+            </mark>
+            readability at grade {{collection.highestJoyo()}}</summary>
+          <ul class="levels-list">
+            <li ng-repeat="level in joyoGrades" ng-if="collection.filterEqual({joyo: level}).countTotal() > 0">
+              <span class="level">Grade {{level}}:
+                <mark ng-style="{'background-color': 'rgba(160,210,80,'+percent('joyo', level)+')' }">
+                  {{ collection.percentReadable({joyo: level}) }}
+                </mark>
+              </span>
+              <span class="level-kanji" lang="ja" ng-bind="collection.filterEqual({joyo: level}).collection.join(', ')"></span>
+            </li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>JLPT:
+            <mark ng-style="{'background-color': 'rgba(160,210,80,'+percent('jlpt', collection.highestJlpt())+')' }">
+              {{ collection.percentReadable({jlpt:collection.highestJlpt()}) }}
+            </mark>
+            readability at level {{collection.highestJlpt()}}</summary>
+          <ul class="levels-list">
+            <li ng-repeat="level in jlptLevels" ng-if="collection.filterEqual({jlpt: level}).countTotal() > 0">
+              <span class="level">Level {{level}}:
+                <mark ng-style="{'background-color': 'rgba(160,210,80,'+percent('jlpt', level)+')' }">
+                  {{ collection.percentReadable({jlpt: level}) }}
+                </mark>
+              </span>
+              <span class="level-kanji" lang="ja" ng-bind="collection.filterEqual({jlpt: level}).collection.join(', ')"></span>
+            </li>
+          </ul>
+        </details>
+
+        <!--<h2><span class="bold">Highest Level:</span> <mark class="highest-level" ng-style="{'background-color': 'rgba(160,210,80,'+getPercentage(collection.highestLevel-1)/100+')'}" ng-bind="collection.highestLevel"></mark>-->
+        <!--  at {{getPercentage(collection.highestLevel-1)}}%</h2>-->
+        <!--<h2 ng-if="collection.noMatch && collection.noMatch.length > 0"><span class="bold">Non-WK:</span> <span lang="ja" class="level-kanji" ng-bind="collection.noMatch.join(', ')"></span></h2>-->
+        <!--<ul class="levels-list">-->
+        <!--  <li ng-repeat="level in collection.levels track by $index" ng-if="level.length > 0">-->
+        <!--    <span class="level">Level {{$index+1}}: <mark ng-style="{'background-color': 'rgba(160,210,80,'+getPercentage($index)/100+')'}">{{getPercentage($index)}}%</mark></span>-->
+        <!--    <span class="level-kanji" lang="ja" ng-bind="level.join(', ')"></span>-->
+        <!--  </li>-->
+        <!--</ul>-->
+
+      </div>
+    </div>
+  </body>
+</html>
